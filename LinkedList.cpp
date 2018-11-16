@@ -28,7 +28,7 @@ void LinkedList::addFirst(int element)
 void LinkedList::addLast(int element)
 {
     Node* newNode = new Node(element);
-    if(tail == NULL){
+    if(tail == NULL){ // Condition to check if no nodes, tail will then be null, otherwise never
         head = newNode;
         tail = newNode;
     } else {
@@ -81,23 +81,26 @@ int LinkedList::removeLast()
 {
     if(size == 0){
         cout<<"No elements in the list"<<endl;
-	  return 0;
+	  return 0; // if we have no elements, we can't remove one
     } 
-    else if (size == 1){
-        Node* temp = head;
-        head = tail = NULL;
-        size = 0;
-        int element = temp->element; 
-        delete temp;
-        return element;
+    else if (size == 1){ // If there is only one element, we are removing it, but accessing it is easy, 
+						// since it is both head and tail
+        Node* temp = head; // Temporary node is head node
+        head = tail = NULL; // setting empty to Null
+        size = 0; 				//Now an empty list
+        int element = temp->element;  //Taking the value of temp and saving it to return what was taken
+        delete temp;				// delete temp
+        return element;				// return element
     } 
     else {
-        Node* current = head;
-        for(int i = 0; i < size - 2; i++){
-            current = current->next;
+        Node* current = head; // Okay - Making a new node with same info as head node
+        for(int i = 0; i < size - 2; i++){ // -2 becuse last one gets deleted, and one before it becomes tail
+            current = current->next; // We are now iterating through the linked list. Why?
+									 // Every node has a next pointer, telling us where the next node in the list lives
+									 // Here, we are shifting the nodes down, effectively
         }
-        Node *temp = tail; 
-        tail = current; 
+        Node *temp = tail; // Making a temporary to save tail
+        tail = current; 	// 
         tail->next = NULL;
         size--;
         int element = temp->element;

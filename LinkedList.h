@@ -20,8 +20,8 @@ class LinkedList
         
     protected:
         class Node; 
-        Node* head;
-        Node* tail;
+        Node* head; // "first" - if there are two elements, head always points to one
+        Node* tail; // "Last" - the tail always points to nothing, it is the end
         int size;
 
     class Node

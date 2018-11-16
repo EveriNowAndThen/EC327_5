@@ -11,8 +11,6 @@
 
 using namespace std;
 
-int findMine(vector<string> myVec, string myString);
-
 int main(){
 	vector<string> deckOCards (53);
 	vector<string> suits (4);
@@ -47,7 +45,7 @@ int main(){
 		// the problem definition didn't seem to allow for it. So, we're here. 
 	// This next bit is the user interaction part
 	vector<string> cardsDrawn;
-	vector<int> removedFrom;
+	vector<string>::const_iterator returnIt;
 	string cardName;
 	int twoKind = 0;
 	//int delInd;
@@ -58,7 +56,7 @@ int main(){
 		count++;
 		cout<<"You have drawn "<< count << " cards"<<endl;
 		cardsDrawn.push_back(cardName); // Add new card
-		removedFrom.push_back(findMine(deckOCards, cardName));
+
 		
 		for(int i = 0; i < cardsDrawn.size() -1; i++){
 			if(cardsDrawn[i][-1] == cardsDrawn[cardsDrawn.size()][-1]){ // If the last char is the same, you have two pair
@@ -76,26 +74,13 @@ int main(){
 		}
 	}
 	// This next bit to be replaced by ofstream operation once the previous bit works
-	int notIn = 1;
+
 	for(int i = 0; i < deckOCards.size(); i++){
 
 	}
 
 
 	return 0;
-}
-
-int findMine(vector<string> myVec, string myString){
-	int size = myVec.size();
-	int index = 0;
-	for(int i = 0; i < size; i++){
-		if(myVec[i] == myString)
-			return i;		
-		else{
-			cout<<"ERROR\n";
-			return 0;
-		}	
-	}
 }
 
 
